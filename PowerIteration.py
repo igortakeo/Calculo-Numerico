@@ -11,7 +11,7 @@ def power_method(A, error_tol):
 		xk = A.dot(y0) #produto de matrizes (x^k) = A * y^(k-1) 
 		yk = xk/np.linalg.norm(xk) #normalizando xk	
 		error = np.abs(np.abs(y0.dot(yk))-1) #teste de alinhamento, calculando o erro
-		if error <= error_tol: # se o erro for menor que a tolerancia recebida como parametro, pode para a iteracao
+		if error <= error_tol: # se o erro for menor que a tolerancia recebida como parametro, pode parar a iteracao
 			break
 		y0 = yk #atribuindo o novo y0
  		
@@ -25,7 +25,7 @@ A = np.array([[12, 2, 3],
               [ 2, 3, 5],
               [ 3, 5,-2]], dtype='double')
 
-(D_python,V_python) = np.linalg.eig(A); # usando uma função pronta para calcular todos os autovalores
-print('Método do Python: {0:.15f}'.format(np.max(abs(D_python))))
-(autovalor, autovetor) = power_method(A, 0.000000001) # usando o metodo da potencia implementado com erro em torno de 10^-9
+(D,V) = np.linalg.eig(A) #usando uma funcao pronta para calcular todos os autovalores
+print('Método do Python: {0:.15f}'.format(np.max(abs(D))))
+(autovalor, autovetor) = power_method(A, 0.000000001) #usando o metodo da potencia implementado com erro em torno de 10^-9
 print('Método Implementado: {0:.15f}'.format(autovalor))
